@@ -1,0 +1,19 @@
+@startuml
+
+start
+
+:Informar percentual de umidade;
+:Informar percentual de impurezas;
+
+if (Valores numéricos válidos?) then (Sim)
+    :Calcular desconto de umidade;
+    :Calcular desconto de impurezas;
+    :Calcular desconto total;
+    :Mostrar descontos ao usuário;
+else (Não)
+    :Mostrar mensagem de erro;
+endif
+
+stop
+
+@enduml
