@@ -131,6 +131,7 @@
 
                             <tr>
 
+                                <th>Data e Hora</th>
                                 <th>Placa</th>
                                 <th>Peso Bruto</th>
                                 <th>Tara</th>
@@ -146,6 +147,10 @@
                             {% for pesagem in pesagens %}
 
                                 <tr>
+
+                                    <td>
+                                        {{ pesagem.data_hora }}
+                                    </td>
 
                                     <td>
                                         {{ pesagem.placa }}
@@ -197,4 +202,4 @@
 </body>
 
 </html>
-```
+

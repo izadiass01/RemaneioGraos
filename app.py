@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -32,14 +33,20 @@ def cadastro_pesagem():
             elif tara >= peso_bruto:
                 mensagem = "A tara não pode ser maior ou igual ao peso bruto."
 
+            elif not placa:
+                mensagem = "Informe a placa do caminhão."
+
             else:
                 peso_inicial = peso_bruto - tara
+
+                data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
 
                 nova_pesagem = {
                     "placa": placa.upper(),
                     "peso_bruto": peso_bruto,
                     "tara": tara,
-                    "peso_inicial": peso_inicial
+                    "peso_inicial": peso_inicial,
+                    "data_hora": data_hora
                 }
 
                 pesagens.append(nova_pesagem)
