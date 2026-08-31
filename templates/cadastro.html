@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Cadastro da Carga</h2>
+
+    <form action="/calcular" method="POST">
+
+        <label for="peso_bruto">
+            Peso bruto (kg):
+        </label>
+
+        <input
+            type="number"
+            id="peso_bruto"
+            name="peso_bruto"
+            step="0.01"
+            min="0"
+            required
+        >
+
+
+        <label for="tara">
+            Tara do caminhão (kg):
+        </label>
+
+        <input
+            type="number"
+            id="tara"
+            name="tara"
+            step="0.01"
+            min="0"
+            required
+        >
+
+
+        <label for="umidade">
+            Umidade (%):
+        </label>
+
+        <input
+            type="number"
+            id="umidade"
+            name="umidade"
+            step="0.01"
+            min="0"
+            required
+        >
+
+
+        <label for="impurezas">
+            Impurezas (%):
+        </label>
+
+        <input
+            type="number"
+            id="impurezas"
+            name="impurezas"
+            step="0.01"
+            min="0"
+            required
+        >
+
+
+        <button type="submit">
+            Calcular Remaneio
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Resultado do Remaneio</h2>
+
+    <div class="resultado">
+
+        <p>
+            <strong>Peso líquido:</strong>
+            {{ "%.2f"|format(peso_liquido) }} kg
+        </p>
+
+        <p>
+            <strong>Desconto de umidade:</strong>
+            {{ "%.2f"|format(desconto_umidade) }} kg
+        </p>
+
+        <p>
+            <strong>Desconto de impurezas:</strong>
+            {{ "%.2f"|format(desconto_impurezas) }} kg
+        </p>
+
+        <hr>
+
+        <h3>
+            Peso final:
+            {{ "%.2f"|format(peso_final) }} kg
+        </h3>
+
+    </div>
+
+    <a href="/" class="voltar">
+        ← Novo cálculo
+    </a>
+
+</div>
+
+{% endblock %}
