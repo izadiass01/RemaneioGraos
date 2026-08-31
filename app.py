@@ -15,6 +15,22 @@ def calcular():
     umidade = float(request.form["umidade"])
     impurezas = float(request.form["impurezas"])
 
+    # Validação dos dados
+    if peso_bruto <= 0:
+        return "Erro: o peso bruto deve ser maior que zero."
+
+    if tara < 0:
+        return "Erro: a tara não pode ser negativa."
+
+    if tara >= peso_bruto:
+        return "Erro: a tara deve ser menor que o peso bruto."
+
+    if umidade < 0 or umidade > 100:
+        return "Erro: a umidade deve estar entre 0% e 100%."
+
+    if impurezas < 0 or impurezas > 100:
+        return "Erro: as impurezas devem estar entre 0% e 100%."
+
     # Calcula o peso líquido
     peso_liquido = peso_bruto - tara
 
@@ -33,7 +49,7 @@ def calcular():
         "resultado.html",
         peso_liquido=peso_liquido,
         desconto_umidade=desconto_umidade,
-        desconto_impurezas=desconto_impurezas,
+        impurezas=desconto_impurezas,
         peso_final=peso_final
     )
 
