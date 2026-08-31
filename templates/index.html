@@ -1,0 +1,100 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Remaneio de Grãos</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            🌾 Remaneio de Grãos
+        </div>
+
+        <nav>
+            <a href="/">Início</a>
+            <a href="/cadastro-pesagem">Registrar Pesagem</a>
+        </nav>
+
+    </header>
+
+
+    <main class="inicio">
+
+        <section class="hero">
+
+            <h1>Controle Inteligente de Pesagem de Grãos</h1>
+
+            <p>
+                Sistema desenvolvido para auxiliar no registro de cargas,
+                controle do peso bruto, tara dos caminhões e cálculo
+                do peso inicial dos grãos.
+            </p>
+
+            <a href="/cadastro-pesagem" class="botao">
+                Registrar Nova Pesagem
+            </a>
+
+        </section>
+
+
+        <section class="informacoes">
+
+            <div class="card">
+
+                <h2>🚛 Peso Bruto</h2>
+
+                <p>
+                    Registre o peso total do caminhão carregado.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>⚖️ Tara</h2>
+
+                <p>
+                    Informe o peso do caminhão sem a carga.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>📊 Cálculo Inicial</h2>
+
+                <p>
+                    O sistema calcula automaticamente o peso inicial
+                    dos grãos.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Projeto Remaneio de Grãos • Sistema para apoio ao agronegócio
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
+```
