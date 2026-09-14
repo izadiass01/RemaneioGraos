@@ -1,9 +1,9 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -11,19 +11,25 @@ body {
     color: #333;
 }
 
+
+/* CABEÇALHO */
+
 header {
     background-color: #2f6b3b;
     color: white;
     padding: 20px 8%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+
 .logo {
     font-size: 24px;
     font-weight: bold;
 }
+
 
 nav a {
     color: white;
@@ -32,210 +38,382 @@ nav a {
     font-weight: bold;
 }
 
+
 nav a:hover {
     text-decoration: underline;
 }
+
+
+/* PÁGINA INICIAL */
 
 .inicio {
     min-height: 80vh;
 }
 
+
 .hero {
     text-align: center;
+
     padding: 80px 20px;
-    background: linear-gradient(135deg, #3c7d44, #7da94b);
+
+    background: linear-gradient(
+        135deg,
+        #3c7d44,
+        #7da94b
+    );
+
     color: white;
 }
+
 
 .hero h1 {
     font-size: 42px;
     margin-bottom: 20px;
 }
 
+
 .hero p {
     max-width: 700px;
+
     margin: auto;
+
     font-size: 18px;
+
     line-height: 1.6;
 }
 
+
 .botao {
     display: inline-block;
+
     margin-top: 30px;
+
     padding: 14px 28px;
+
     background-color: white;
+
     color: #2f6b3b;
+
     text-decoration: none;
+
     border-radius: 8px;
+
     font-weight: bold;
 }
+
 
 .botao:hover {
     transform: scale(1.05);
 }
 
+
+/* CARDS */
+
 .informacoes {
+
     display: flex;
+
     justify-content: center;
+
     gap: 25px;
+
     padding: 60px 8%;
+
     flex-wrap: wrap;
 }
 
+
 .card {
+
     background-color: white;
+
     padding: 30px;
+
     width: 280px;
+
     border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+    box-shadow:
+        0px 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 
 .card h2 {
+
     color: #2f6b3b;
+
     margin-bottom: 15px;
+
 }
+
 
 .card p {
+
     line-height: 1.5;
+
 }
+
+
+/* FORMULÁRIO */
 
 .container {
+
     max-width: 1000px;
+
     margin: 50px auto;
+
     padding: 20px;
+
 }
+
 
 .formulario-card {
+
     background-color: white;
+
     padding: 35px;
+
     border-radius: 12px;
-    box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.1);
+
+    box-shadow:
+        0px 5px 18px rgba(0, 0, 0, 0.1);
 }
+
 
 .formulario-card h1 {
+
     color: #2f6b3b;
+
     margin-bottom: 10px;
+
 }
+
 
 .subtitulo {
+
     margin-bottom: 30px;
+
     color: #666;
+
 }
+
 
 .campo {
+
     margin-bottom: 20px;
+
 }
+
 
 .campo label {
+
     display: block;
+
     margin-bottom: 8px;
+
     font-weight: bold;
+
 }
+
 
 .campo input {
+
     width: 100%;
+
     padding: 13px;
+
     border: 1px solid #ccc;
+
     border-radius: 6px;
+
     font-size: 16px;
+
 }
+
 
 .campo input:focus {
+
     outline: none;
+
     border-color: #2f6b3b;
+
 }
+
 
 button {
+
     width: 100%;
+
     padding: 15px;
+
     border: none;
+
     background-color: #2f6b3b;
+
     color: white;
+
     font-size: 17px;
+
     font-weight: bold;
+
     border-radius: 6px;
+
     cursor: pointer;
+
 }
+
 
 button:hover {
+
     background-color: #24552e;
+
 }
+
+
+/* MENSAGEM */
 
 .mensagem {
+
     margin-top: 20px;
+
     padding: 15px;
+
     background-color: #e4f3e7;
+
     color: #236332;
+
     border-radius: 6px;
+
     font-weight: bold;
+
 }
+
+
+/* TABELA */
 
 .tabela-section {
+
     margin-top: 40px;
+
 }
+
 
 .tabela-section h2 {
+
     color: #2f6b3b;
+
     margin-bottom: 20px;
+
 }
+
 
 .tabela-container {
+
     overflow-x: auto;
+
 }
+
 
 table {
+
     width: 100%;
+
     border-collapse: collapse;
+
     background-color: white;
+
 }
 
+
 th {
+
     background-color: #2f6b3b;
+
     color: white;
+
 }
+
 
 th,
 td {
+
     padding: 15px;
+
     text-align: center;
+
     border-bottom: 1px solid #ddd;
+
 }
+
 
 tr:hover {
+
     background-color: #f5f5f5;
+
 }
+
 
 .peso-final {
+
     font-weight: bold;
+
     color: #2f6b3b;
+
 }
+
 
 .sem-registros {
+
     background-color: white;
+
     padding: 20px;
+
     border-radius: 8px;
+
 }
 
+
+/* RODAPÉ */
+
 footer {
+
     margin-top: 50px;
+
     background-color: #244d2b;
+
     color: white;
+
     text-align: center;
+
     padding: 20px;
+
 }
+
+
+/* CELULAR */
 
 @media (max-width: 700px) {
 
     header {
+
         flex-direction: column;
+
         gap: 15px;
+
     }
+
 
     nav a {
+
         margin: 0 10px;
+
     }
 
+
     .hero h1 {
+
         font-size: 30px;
+
     }
+
 }

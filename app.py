@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request
 from datetime import datetime
 
@@ -14,11 +13,9 @@ def index():
 
 @app.route("/cadastro-pesagem", methods=["GET", "POST"])
 def cadastro_pesagem():
-
     mensagem = ""
 
     if request.method == "POST":
-
         placa = request.form.get("placa")
         peso_bruto = request.form.get("peso_bruto")
         tara = request.form.get("tara")
