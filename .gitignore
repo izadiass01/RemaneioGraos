@@ -1,8 +1,5 @@
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
+remaneio.db
 .venv/
 venv/
-env/
-.env

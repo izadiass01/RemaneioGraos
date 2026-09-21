@@ -1,49 +1,52 @@
-# Remaneio de Grãos
+# 🌾 Remaneio de Grãos
 
-## 📌 Sobre o Projeto
+🌐 **Sistema online:** https://izabellydias17.pythonanywhere.com/
 
-O projeto Remaneio de Grãos foi desenvolvido com o objetivo de auxiliar no controle de pesagem de cargas de grãos durante o processo de recebimento e armazenamento.
+## 📌 Sobre o projeto
 
-Muitas vezes, os cálculos realizados manualmente podem gerar erros ou demandar mais tempo. Pensando nisso, o sistema foi planejado para registrar informações importantes da carga, como peso bruto, tara do caminhão, umidade e impurezas, realizando os cálculos necessários de forma mais rápida e confiável.
+O **Remaneio de Grãos** é um sistema desenvolvido para auxiliar no registro e controle da pesagem de caminhões durante o recebimento de grãos.
+
+O sistema permite cadastrar os dados da pesagem, calcular o peso inicial, visualizar os registros e também editar ou excluir uma pesagem.
 
 ## 🎯 Objetivo
 
-Desenvolver um sistema capaz de registrar os dados de pesagem dos caminhões e calcular automaticamente o peso líquido real dos grãos, considerando os descontos aplicados por umidade e impurezas.
+Facilitar o registro das informações de pesagem dos caminhões e organizar os dados de forma simples e prática.
 
-## 👥 Integrantes do Grupo
+## ⚙️ Funcionalidades
 
-- Izabelly Cássia Dias Berghe — GitHub: @izadiass01 — Responsável pela User Story #1
-- Jhuly Gabriely Cerqueira de Oliveira — GitHub: @jhulyprotagonista — Responsável pela User Story #2
-- Luiza Maria Portugal Sabino — GitHub: @luiza-portino — Responsável pela User Story #3
+- Cadastro da placa do caminhão;
+- Registro do peso bruto;
+- Registro da tara;
+- Cálculo automático do peso inicial;
+- Registro da data e hora;
+- Listagem das pesagens;
+- Edição de pesagens;
+- Exclusão de pesagens;
+- Armazenamento dos dados em banco SQLite.
 
-## 📋 Funcionalidades
-
-### Registro do peso bruto e da tara
-
-Permite cadastrar o peso bruto da carga e a tara do caminhão para obter o peso inicial dos grãos transportados.
-
-### Cálculo dos descontos
-
-Realiza o cálculo dos descontos relacionados à umidade e às impurezas presentes na carga.
-
-### Determinação do peso líquido real
-
-Calcula o peso líquido final dos grãos após a aplicação dos descontos necessários.
-
-## 🛠️ Tecnologias Utilizadas
+## 💻 Tecnologias utilizadas
 
 - Python
+- Flask
+- SQLite
+- SQLAlchemy
+- HTML5
+- CSS3
 - Git
 - GitHub
-- GitHub Issues
-- GitHub Projects
+- PythonAnywhere
 
-## 📊 Organização do Projeto
+## 🗂️ Estrutura do projeto
 
-As atividades do projeto são organizadas por meio do GitHub Projects, utilizando um quadro Kanban para acompanhar o andamento das tarefas.
-
-As User Stories foram cadastradas como Issues e distribuídas entre os integrantes da equipe, permitindo uma melhor organização do desenvolvimento.
-
-## 📦 Milestone
-
-Este repositório foi criado para a entrega do 1º Milestone da disciplina, reunindo a documentação inicial do projeto, as histórias de usuário e o planejamento das atividades da equipe.
+```text
+RemaneioGraos/
+├── app.py
+├── requirements.txt
+├── remaneio.db
+├── templates/
+│   ├── index.html
+│   ├── cadastro_pesagem.html
+│   └── editar_pesagem.html
+├── static/
+│   └── style.css
+└── .gitignore

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registrar Pesagem - Remaneio de Grãos</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            🌾 Remaneio de Grãos
+        </div>
+
+        <nav>
+            <a href="/">Início</a>
+            <a href="/cadastro-pesagem">Registrar Pesagem</a>
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <div class="formulario-card">
+
+            <h1>🚛 Registrar Pesagem</h1>
+
+            <p class="subtitulo">
+                Informe os dados do caminhão para registrar a carga.
+            </p>
+
+
+            <form method="POST">
+
+                <div class="campo">
+
+                    <label for="placa">
+                        Placa do Caminhão
+                    </label>
+
+                    <input
+                        type="text"
+                        id="placa"
+                        name="placa"
+                        placeholder="Ex: ABC1D23"
+                        maxlength="7"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="peso_bruto">
+                        Peso Bruto (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="peso_bruto"
+                        name="peso_bruto"
+                        placeholder="Ex: 30000"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="tara">
+                        Tara do Caminhão (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="tara"
+                        name="tara"
+                        placeholder="Ex: 8000"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit">
+                    Registrar Pesagem
+                </button>
+
+            </form>
+
+
+            {% if mensagem %}
+
+                <div class="mensagem">
+                    {{ mensagem }}
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <section class="tabela-section">
+
+            <h2>📋 Pesagens Registradas</h2>
+
+
+            {% if pesagens %}
+
+                <div class="tabela-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Data e Hora</th>
+
+                                <th>Placa</th>
+
+                                <th>Peso Bruto</th>
+
+                                <th>Tara</th>
+
+                                <th>Peso Inicial</th>
+
+                                <th>Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for pesagem in pesagens %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ pesagem.data_hora }}
+                                    </td>
+
+                                    <td>
+                                        {{ pesagem.placa }}
+                                    </td>
+
+                                    <td>
+                                        {{ "%.2f"|format(pesagem.peso_bruto) }} kg
+                                    </td>
+
+                                    <td>
+                                        {{ "%.2f"|format(pesagem.tara) }} kg
+                                    </td>
+
+                                    <td class="peso-final">
+                                        {{ "%.2f"|format(pesagem.peso_inicial) }} kg
+                                    </td>
+
+                                    <td>
+
+                                        <div class="acoes">
+
+                                            <a
+                                                href="/editar/{{ pesagem.id }}"
+                                                class="botao-editar"
+                                            >
+                                                ✏️ Editar
+                                            </a>
+
+
+                                            <form
+                                                action="/excluir/{{ pesagem.id }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Tem certeza que deseja excluir esta pesagem?');"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="botao-excluir"
+                                                >
+                                                    🗑️ Excluir
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% else %}
+
+                <p class="sem-registros">
+                    Nenhuma pesagem foi registrada ainda.
+                </p>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Projeto Remaneio de Grãos • Controle de Pesagem
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
