@@ -2,13 +2,23 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Remaneio de Grãos</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
 </head>
+
 
 <body>
 
@@ -19,8 +29,15 @@
         </div>
 
         <nav>
-            <a href="/">Início</a>
-            <a href="/cadastro-pesagem">Registrar Pesagem</a>
+
+            <a href="/">
+                Início
+            </a>
+
+            <a href="/cadastro-pesagem">
+                Registrar Pesagem
+            </a>
+
         </nav>
 
     </header>
@@ -35,12 +52,16 @@
             </h1>
 
             <p>
-                Sistema desenvolvido para auxiliar no registro de cargas,
-                controle do peso bruto, tara dos caminhões e cálculo
-                do peso inicial dos grãos.
+                Sistema desenvolvido para auxiliar no registro
+                de cargas, controle do peso bruto, tara dos
+                caminhões e cálculo do peso inicial dos grãos.
             </p>
 
-            <a href="/cadastro-pesagem" class="botao">
+
+            <a
+                href="/cadastro-pesagem"
+                class="botao"
+            >
                 Registrar Nova Pesagem
             </a>
 
@@ -51,7 +72,9 @@
 
             <div class="card">
 
-                <h2>🚛 Peso Bruto</h2>
+                <h2>
+                    🚛 Peso Bruto
+                </h2>
 
                 <p>
                     Registre o peso total do caminhão carregado.
@@ -62,7 +85,9 @@
 
             <div class="card">
 
-                <h2>⚖️ Tara</h2>
+                <h2>
+                    ⚖️ Tara
+                </h2>
 
                 <p>
                     Informe o peso do caminhão sem a carga.
@@ -73,11 +98,41 @@
 
             <div class="card">
 
-                <h2>📊 Cálculo Inicial</h2>
+                <h2>
+                    📊 Cálculo Inicial
+                </h2>
 
                 <p>
-                    O sistema calcula automaticamente o peso inicial
-                    dos grãos.
+                    O sistema calcula automaticamente o peso
+                    inicial dos grãos.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    ✏️ Alteração
+                </h2>
+
+                <p>
+                    É possível alterar os dados de uma pesagem
+                    já registrada.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    🗑️ Exclusão
+                </h2>
+
+                <p>
+                    Também é possível excluir uma pesagem
+                    registrada.
                 </p>
 
             </div>
