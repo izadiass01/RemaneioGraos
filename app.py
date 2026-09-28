@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 
 def calcular_peso_liquido_real(peso_bruto, tara, desconto_umidade, desconto_impurezas):
+
     if peso_bruto is None or tara is None:
         raise ValueError("Peso bruto e tara são obrigatórios.")
 
@@ -11,7 +12,9 @@ def calcular_peso_liquido_real(peso_bruto, tara, desconto_umidade, desconto_impu
         raise ValueError("Os descontos de umidade e impurezas são obrigatórios.")
 
     peso_inicial = peso_bruto - tara
+
     desconto_total = desconto_umidade + desconto_impurezas
+
     peso_liquido_real = peso_inicial - desconto_total
 
     return max(peso_liquido_real, 0)
@@ -19,6 +22,7 @@ def calcular_peso_liquido_real(peso_bruto, tara, desconto_umidade, desconto_impu
 
 @app.route("/", methods=["GET", "POST"])
 def inicio():
+
     resultado = None
     erro = None
 
@@ -30,6 +34,7 @@ def inicio():
     }
 
     if request.method == "POST":
+
         try:
             dados["peso_bruto"] = request.form.get("peso_bruto")
             dados["tara"] = request.form.get("tara")

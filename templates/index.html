@@ -1,0 +1,340 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Remaneio de Grãos</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    
+    <header>
+
+        <div class="logo">
+            <div class="logo-icon">🌾</div>
+
+            <div>
+                
+                <p><h1>Remaneio de Grãos</h1></p>
+            </div>
+        </div>
+
+        <div class="status">
+            ● Sistema de Pesagem
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- TÍTULO -->
+        <section class="titulo">
+
+            <div class="titulo-icon">
+                🚛
+            </div>
+
+            <div>
+                <h2>Controle de Pesagem</h2>
+
+                <p>
+                    Sistema para controle e cálculo do peso líquido real.
+                </p>
+            </div>
+
+        </section>
+
+
+        
+        <section class="informacoes">
+
+            <div class="info-card">
+                <div class="info-icon">⚖️</div>
+
+                <div>
+                    <span>PESO BRUTO</span>
+                    <strong>Entrada</strong>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <div class="info-icon">🚛</div>
+
+                <div>
+                    <span>TARA</span>
+                    <strong>Caminhão</strong>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <div class="info-icon">💧</div>
+
+                <div>
+                    <span>UMIDADE</span>
+                    <strong>Desconto</strong>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <div class="info-icon">🌾</div>
+
+                <div>
+                    <span>IMPUREZAS</span>
+                    <strong>Desconto</strong>
+                </div>
+            </div>
+
+        </section>
+
+
+        
+        <section class="caixa">
+
+            <div class="caixa-cabecalho">
+
+                <div class="caixa-icon">
+                    📋
+                </div>
+
+                <div>
+                    <h3>Dados da pesagem</h3>
+
+                    <p>
+                        Informe os dados da carga para realizar o cálculo.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form method="POST" class="formulario">
+
+                <div class="campo">
+
+                    <label for="peso_bruto">
+                        Peso bruto
+                    </label>
+
+                    <div class="input-area">
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            id="peso_bruto"
+                            name="peso_bruto"
+                            value="{{ dados.peso_bruto }}"
+                            required
+                        >
+
+                        <span>kg</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="tara">
+                        Tara do caminhão
+                    </label>
+
+                    <div class="input-area">
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            id="tara"
+                            name="tara"
+                            value="{{ dados.tara }}"
+                            required
+                        >
+
+                        <span>kg</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="desconto_umidade">
+                        Desconto de umidade
+                    </label>
+
+                    <div class="input-area">
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            id="desconto_umidade"
+                            name="desconto_umidade"
+                            value="{{ dados.desconto_umidade }}"
+                            required
+                        >
+
+                        <span>kg</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="desconto_impurezas">
+                        Desconto de impurezas
+                    </label>
+
+                    <div class="input-area">
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            id="desconto_impurezas"
+                            name="desconto_impurezas"
+                            value="{{ dados.desconto_impurezas }}"
+                            required
+                        >
+
+                        <span>kg</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="area-botao">
+
+                    <button type="submit" class="botao-calcular">
+                        ⚖️ Calcular peso líquido
+                    </button>
+
+                </div>
+
+            </form>
+
+            
+        </section>
+
+
+        
+        {% if resultado is not none %}
+
+        <section class="caixa resultado-caixa">
+
+            <div class="resultado">
+
+                <div class="resultado-icon">
+                    ✓
+                </div>
+
+                <div class="resultado-info">
+
+                    <span>RESULTADO DA PESAGEM</span>
+
+                    <h3>
+                        Peso líquido real
+                    </h3>
+
+                    <strong>
+                        {{ "%.2f"|format(resultado) }} kg
+                    </strong>
+
+                    <p>
+                        Resultado calculado com base no peso bruto,
+                        tara e descontos informados.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        
+        {% if erro %}
+
+        <section class="caixa erro-caixa">
+
+            <div class="erro">
+
+                <div class="erro-icon">
+                    !
+                </div>
+
+                <div>
+                    <h3>Não foi possível realizar o cálculo</h3>
+
+                    <p>{{ erro }}</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+       
+        <section class="como-funciona">
+
+            <h3>Como funciona o cálculo?</h3>
+
+            <div class="etapas">
+
+                <div class="etapa">
+                    <span>01</span>
+                    <p>Peso bruto − Tara</p>
+                </div>
+
+                <div class="etapa">
+                    <span>02</span>
+                    <p>Desconto de umidade</p>
+                </div>
+
+                <div class="etapa">
+                    <span>03</span>
+                    <p>Desconto de impurezas</p>
+                </div>
+
+                <div class="etapa">
+                    <span>04</span>
+                    <p>Peso líquido real</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <strong>🌾Remaneio de Grãos</strong>
+
+        <p>
+            Sistema de controle de recebimento e pesagem
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
+```
