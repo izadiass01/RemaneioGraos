@@ -1,0 +1,20 @@
+
+@startuml RemaneioGraosC4
+
+title C4 - Contêineres do Remaneio de Grãos
+
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment center
+
+actor "Usuário" as usuario
+
+rectangle "PythonAnywhere" {
+    rectangle "Aplicação Web\nRemaneio de Grãos\n\nPython + Flask\nHTML5 + CSS3" as app
+    database "Banco de dados\nSQLite\n\nRegistros de pesagem" as db
+}
+
+usuario --> app : Acessa pelo navegador\nHTTPS
+app --> db : Consulta e salva\npesagens
+
+@enduml
