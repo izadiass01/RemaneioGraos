@@ -1,5 +1,5 @@
-
 Flask
 Flask-SQLAlchemy
 SQLAlchemy
-
+Flask-WTF
+Flask-Limiter

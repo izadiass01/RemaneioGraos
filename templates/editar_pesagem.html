@@ -1,155 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Pesagem - Remaneio de Grãos</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}"
-    >
-
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 
 <body>
 
-    <header>
+<header>
 
-        <div class="logo">
-            🌾 Remaneio de Grãos
-        </div>
+    <div class="logo">🌾 Remaneio de Grãos</div>
 
-        <nav>
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('cadastro_pesagem') }}">Pesagens</a>
+        <a href="{{ url_for('usuarios') }}">Usuários</a>
 
-            <a href="/">
-                Início
-            </a>
+        <form method="POST"
+              action="{{ url_for('sair') }}"
+              style="display:inline;">
 
-            <a href="/cadastro-pesagem">
-                Registrar Pesagem
-            </a>
+            <input type="hidden"
+                   name="csrf_token"
+                   value="{{ csrf_token() }}">
 
-        </nav>
+            <button type="submit">Sair</button>
 
-    </header>
+        </form>
+    </nav>
 
+</header>
 
-    <main class="container">
+<main class="container">
 
-        <div class="formulario-card">
+    <div class="formulario-card">
 
-            <h1>
-                ✏️ Editar Pesagem
-            </h1>
+        <h1>✏️ Editar Pesagem</h1>
 
-            <p class="subtitulo">
-                Altere os dados da pesagem e salve as modificações.
-            </p>
-
-
-            {% if mensagem %}
-
-                <div class="mensagem">
-                    {{ mensagem }}
-                </div>
-
-            {% endif %}
-
-
-            <form method="POST">
-
-                <div class="campo">
-
-                    <label for="placa">
-                        Placa do Caminhão
-                    </label>
-
-                    <input
-                        type="text"
-                        id="placa"
-                        name="placa"
-                        value="{{ pesagem.placa }}"
-                        maxlength="7"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="peso_bruto">
-                        Peso Bruto (kg)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="peso_bruto"
-                        name="peso_bruto"
-                        value="{{ pesagem.peso_bruto }}"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="tara">
-                        Tara do Caminhão (kg)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="tara"
-                        name="tara"
-                        value="{{ pesagem.tara }}"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
-
-                </div>
-
-
-                <button type="submit">
-                    💾 Salvar Alterações
-                </button>
-
-            </form>
-
-
-            <a
-                href="/cadastro-pesagem"
-                class="botao-voltar"
-            >
-                ← Voltar para Pesagens
-            </a>
-
-        </div>
-
-    </main>
-
-
-    <footer>
-
-        <p>
-            Projeto Remaneio de Grãos • Controle de Pesagem
+        <p class="subtitulo">
+            Altere os dados da pesagem e salve as modificações.
         </p>
 
-    </footer>
+        {% if mensagem %}
+
+            <div class="mensagem">
+                {{ mensagem }}
+            </div>
+
+        {% endif %}
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="csrf_token"
+                   value="{{ csrf_token() }}">
+
+            <div class="campo">
+
+                <label for="placa">
+                    Placa do Caminhão
+                </label>
+
+                <input
+                    type="text"
+                    id="placa"
+                    name="placa"
+                    value="{{ pesagem.placa }}"
+                    maxlength="7"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="peso_bruto">
+                    Peso Bruto (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="peso_bruto"
+                    name="peso_bruto"
+                    value="{{ pesagem.peso_bruto }}"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="tara">
+                    Tara do Caminhão (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="tara"
+                    name="tara"
+                    value="{{ pesagem.tara }}"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+            <button type="submit">
+                💾 Salvar Alterações
+            </button>
+
+        </form>
+
+        <a href="{{ url_for('cadastro_pesagem') }}"
+           class="botao-voltar">
+
+            ← Voltar para Pesagens
+
+        </a>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>Projeto Remaneio de Grãos • Controle de Pesagem</p>
+</footer>
 
 </body>
-
 </html>

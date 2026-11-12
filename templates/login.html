@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Remaneio de Grãos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Remaneio de Grãos</h1>
+        <h2>Acesso ao sistema</h2>
+
+        {% if mensagem %}
+            <p class="mensagem">{{ mensagem }}</p>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <label for="nome_usuario">Nome de usuário</label>
+            <input
+                type="text"
+                id="nome_usuario"
+                name="nome_usuario"
+                required
+                autocomplete="username"
+            >
+
+            <label for="senha">Senha</label>
+            <input
+                type="password"
+                id="senha"
+                name="senha"
+                required
+                autocomplete="current-password"
+            >
+
+            <button type="submit">Entrar</button>
+        </form>
+    </main>
+
+</body>
+</html>

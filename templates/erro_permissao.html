@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Acesso negado - Remaneio de Grãos</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🌾 Remaneio de Grãos
+    </div>
+
+</header>
+
+<main class="container">
+
+    <section class="formulario-card">
+
+        <h1>⛔ Acesso não permitido</h1>
+
+        <p class="subtitulo">
+            {{ mensagem }}
+        </p>
+
+        <a href="{{ url_for('index') }}"
+           class="botao-voltar">
+
+            Voltar ao início
+
+        </a>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <p>Projeto Remaneio de Grãos</p>
+
+</footer>
+
+</body>
+</html>

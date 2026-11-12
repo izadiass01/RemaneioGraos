@@ -1,199 +1,216 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Registrar Pesagem - Remaneio de Grãos</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <header>
+<header>
+    <div class="logo">🌾 Remaneio de Grãos</div>
 
-        <div class="logo">
-            🌾 Remaneio de Grãos
-        </div>
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('cadastro_pesagem') }}">Pesagens</a>
 
-        <nav>
-            <a href="/">Início</a>
-            <a href="/cadastro-pesagem">Registrar Pesagem</a>
-        </nav>
+        {% if usuario_atual.tipo == "administrador" %}
+            <a href="{{ url_for('usuarios') }}">Usuários</a>
+        {% endif %}
 
-    </header>
+        <form method="POST"
+              action="{{ url_for('sair') }}"
+              style="display:inline;">
 
+            <input type="hidden"
+                   name="csrf_token"
+                   value="{{ csrf_token() }}">
 
-    <main class="container">
+            <button type="submit">Sair</button>
+        </form>
+    </nav>
+</header>
 
-        <div class="formulario-card">
+<main class="container">
 
-            <h1>🚛 Registrar Pesagem</h1>
+    <div class="formulario-card">
 
-            <p class="subtitulo">
-                Informe os dados do caminhão para registrar a carga.
-            </p>
+        <h1>🚛 Registrar Pesagem</h1>
 
+        <p class="subtitulo">
+            Conectado como
+            <strong>{{ usuario_atual.nome_usuario }}</strong>
+            — perfil:
+            <strong>{{ usuario_atual.tipo }}</strong>.
+        </p>
 
-            <form method="POST">
+        {% if mensagem %}
+            <div class="mensagem">
+                {{ mensagem }}
+            </div>
+        {% endif %}
 
-                <div class="campo">
+        {% with mensagens = get_flashed_messages() %}
 
-                    <label for="placa">
-                        Placa do Caminhão
-                    </label>
-
-                    <input
-                        type="text"
-                        id="placa"
-                        name="placa"
-                        placeholder="Ex: ABC1D23"
-                        maxlength="7"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="peso_bruto">
-                        Peso Bruto (kg)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="peso_bruto"
-                        name="peso_bruto"
-                        placeholder="Ex: 30000"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="tara">
-                        Tara do Caminhão (kg)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="tara"
-                        name="tara"
-                        placeholder="Ex: 8000"
-                        min="0"
-                        step="0.01"
-                        required
-                    >
-
-                </div>
-
-
-                <button type="submit">
-                    Registrar Pesagem
-                </button>
-
-            </form>
-
-
-            {% if mensagem %}
+            {% for item in mensagens %}
 
                 <div class="mensagem">
-                    {{ mensagem }}
+                    {{ item }}
                 </div>
 
-            {% endif %}
+            {% endfor %}
 
-        </div>
+        {% endwith %}
 
+        <form method="POST">
 
-        <section class="tabela-section">
+            <input type="hidden"
+                   name="csrf_token"
+                   value="{{ csrf_token() }}">
 
-            <h2>📋 Pesagens Registradas</h2>
+            <div class="campo">
 
+                <label for="placa">
+                    Placa do Caminhão
+                </label>
 
-            {% if pesagens %}
+                <input
+                    type="text"
+                    id="placa"
+                    name="placa"
+                    placeholder="Ex: ABC1D23"
+                    maxlength="7"
+                    required
+                >
 
-                <div class="tabela-container">
+            </div>
 
-                    <table>
+            <div class="campo">
 
-                        <thead>
+                <label for="peso_bruto">
+                    Peso Bruto (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="peso_bruto"
+                    name="peso_bruto"
+                    placeholder="Ex: 30000"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="tara">
+                    Tara do Caminhão (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="tara"
+                    name="tara"
+                    placeholder="Ex: 8000"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+            <button type="submit">
+                Registrar Pesagem
+            </button>
+
+        </form>
+
+    </div>
+
+    <section class="tabela-section">
+
+        <h2>📋 Pesagens Registradas</h2>
+
+        {% if pesagens %}
+
+            <div class="tabela-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Data e Hora</th>
+                            <th>Placa</th>
+                            <th>Peso Bruto</th>
+                            <th>Tara</th>
+                            <th>Peso Inicial</th>
+
+                            {% if usuario_atual.tipo == "administrador" %}
+                                <th>Ações</th>
+                            {% endif %}
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for pesagem in pesagens %}
 
                             <tr>
 
-                                <th>Data e Hora</th>
+                                <td>{{ pesagem.data_hora }}</td>
 
-                                <th>Placa</th>
+                                <td>{{ pesagem.placa }}</td>
 
-                                <th>Peso Bruto</th>
+                                <td>
+                                    {{ "%.2f"|format(pesagem.peso_bruto) }} kg
+                                </td>
 
-                                <th>Tara</th>
+                                <td>
+                                    {{ "%.2f"|format(pesagem.tara) }} kg
+                                </td>
 
-                                <th>Peso Inicial</th>
+                                <td class="peso-final">
+                                    {{ "%.2f"|format(pesagem.peso_inicial) }} kg
+                                </td>
 
-                                <th>Ações</th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody>
-
-                            {% for pesagem in pesagens %}
-
-                                <tr>
-
-                                    <td>
-                                        {{ pesagem.data_hora }}
-                                    </td>
-
-                                    <td>
-                                        {{ pesagem.placa }}
-                                    </td>
-
-                                    <td>
-                                        {{ "%.2f"|format(pesagem.peso_bruto) }} kg
-                                    </td>
-
-                                    <td>
-                                        {{ "%.2f"|format(pesagem.tara) }} kg
-                                    </td>
-
-                                    <td class="peso-final">
-                                        {{ "%.2f"|format(pesagem.peso_inicial) }} kg
-                                    </td>
+                                {% if usuario_atual.tipo == "administrador" %}
 
                                     <td>
 
                                         <div class="acoes">
 
                                             <a
-                                                href="/editar/{{ pesagem.id }}"
+                                                href="{{ url_for('editar', id=pesagem.id) }}"
                                                 class="botao-editar"
                                             >
-                                                ✏️ Editar
+                                                Editar
                                             </a>
 
-
                                             <form
-                                                action="/excluir/{{ pesagem.id }}"
+                                                action="{{ url_for('excluir', id=pesagem.id) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Tem certeza que deseja excluir esta pesagem?');"
                                             >
+
+                                                <input
+                                                    type="hidden"
+                                                    name="csrf_token"
+                                                    value="{{ csrf_token() }}"
+                                                >
 
                                                 <button
                                                     type="submit"
                                                     class="botao-excluir"
                                                 >
-                                                    🗑️ Excluir
+                                                    Excluir
                                                 </button>
 
                                             </form>
@@ -202,37 +219,33 @@
 
                                     </td>
 
-                                </tr>
+                                {% endif %}
 
-                            {% endfor %}
+                            </tr>
 
-                        </tbody>
+                        {% endfor %}
 
-                    </table>
+                    </tbody>
 
-                </div>
+                </table>
 
-            {% else %}
+            </div>
 
-                <p class="sem-registros">
-                    Nenhuma pesagem foi registrada ainda.
-                </p>
+        {% else %}
 
-            {% endif %}
+            <p class="sem-registros">
+                Nenhuma pesagem foi registrada ainda.
+            </p>
 
-        </section>
+        {% endif %}
 
-    </main>
+    </section>
 
+</main>
 
-    <footer>
-
-        <p>
-            Projeto Remaneio de Grãos • Controle de Pesagem
-        </p>
-
-    </footer>
+<footer>
+    <p>Projeto Remaneio de Grãos • Controle de Pesagem</p>
+</footer>
 
 </body>
-
 </html>
